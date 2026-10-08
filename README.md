@@ -1,2 +1,6 @@
 # d01-ik
-Jekyll-based visual reference and content sandbox for a custom Bash SSG
+
+Clean visual baseline for experiments with a custom static-site generator.
+
+The current HTML/CSS is a reference point, not the generator architecture.
+The generator will be built separately, starting from a clean design.
