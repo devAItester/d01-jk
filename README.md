@@ -12,9 +12,11 @@ A clean-room website built from a visual reference. The existing HTML and CSS ar
 Jekyll 4.4.1 is available in the current development environment. From the repository root, run:
 
 ```sh
-sh ./serve.sh
+jekyll serve --livereload
 ```
 
-The script explicitly sets an empty `baseurl`, so local URLs stay rooted at http://127.0.0.1:4000/ instead of using the GitHub Pages project prefix.
+Then open http://127.0.0.1:4000/.
+
+Do not hard-code the repository name in `baseurl`. Local Jekyll serves from the root path; GitHub Pages supplies the project-site base path when publishing. The resulting local and published URLs differ by design.
 
 The server watches local files; changes made on GitHub must first be pulled into the local checkout.
