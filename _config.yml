@@ -1,0 +1,7 @@
+title: d01-ik
+markdown: kramdown
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
