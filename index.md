@@ -1,4 +1,5 @@
 ---
+layout: default
 title: d01-ik
 ---
 
