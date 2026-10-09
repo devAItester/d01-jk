@@ -1,15 +1,13 @@
 {% assign all_pages = site.pages | sort: "path" %}
 {% assign current_dir = include.dir %}
+{% assign current_prefix = current_dir | append: '/' %}
 <ul>
 {% for item in all_pages %}
-  {% assign parts = item.path | split: '/' %}
-  {% assign basename = parts | last %}
+  {% assign basename = item.path | split: '/' | last %}
   {% if basename == 'index.md' and item.path != 'index.md' %}
-    {% assign parent_parts = parts | pop %}
-    {% assign section_dir = parent_parts | join: '/' %}
-    {% assign grandparent_parts = parent_parts | pop %}
-    {% assign grandparent_dir = grandparent_parts | join: '/' %}
-    {% if grandparent_dir == current_dir %}
+    {% assign section_dir = item.path | remove: '/index.md' %}
+    {% assign child_dir = section_dir | remove_first: current_prefix %}
+    {% if section_dir contains current_prefix and child_dir != section_dir and child_dir contains '/' == false %}
   <li><a href="{{ item.url | relative_url }}">{{ item.title | default: section_dir }}</a>
     {% include nav.html dir=section_dir %}
   </li>
@@ -17,11 +15,9 @@
   {% endif %}
 {% endfor %}
 {% for item in all_pages %}
-  {% assign parts = item.path | split: '/' %}
-  {% assign basename = parts | last %}
-  {% assign parent_parts = parts | pop %}
-  {% assign parent_dir = parent_parts | join: '/' %}
-  {% if parent_dir == current_dir and basename != 'index.md' and item.path contains 'pages/' and item.path contains '.md' %}
+  {% assign basename = item.path | split: '/' | last %}
+  {% assign relative_path = item.path | remove_first: current_prefix %}
+  {% if item.path contains current_prefix and relative_path != item.path and basename != 'index.md' and relative_path contains '/' == false and item.path contains '.md' %}
   <li><a href="{{ item.url | relative_url }}">{{ item.title | default: basename | remove: '.md' }}</a></li>
   {% endif %}
 {% endfor %}
