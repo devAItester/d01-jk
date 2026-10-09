@@ -7,18 +7,22 @@
   {% if basename == 'index.md' and item.path != 'index.md' %}
     {% assign section_dir = item.path | remove: '/index.md' %}
     {% assign child_dir = section_dir | remove_first: current_prefix %}
-    {% if section_dir contains current_prefix and child_dir != section_dir and child_dir contains '/' == false %}
+    {% if section_dir contains current_prefix and child_dir != section_dir %}
+      {% unless child_dir contains '/' %}
   <li><a href="{{ item.url | relative_url }}">{{ item.title | default: section_dir }}</a>
     {% include nav.html dir=section_dir %}
   </li>
+      {% endunless %}
     {% endif %}
   {% endif %}
 {% endfor %}
 {% for item in all_pages %}
   {% assign basename = item.path | split: '/' | last %}
   {% assign relative_path = item.path | remove_first: current_prefix %}
-  {% if item.path contains current_prefix and relative_path != item.path and basename != 'index.md' and relative_path contains '/' == false and item.path contains '.md' %}
+  {% if item.path contains current_prefix and relative_path != item.path and basename != 'index.md' and item.path contains '.md' %}
+    {% unless relative_path contains '/' %}
   <li><a href="{{ item.url | relative_url }}">{{ item.title | default: basename | remove: '.md' }}</a></li>
+    {% endunless %}
   {% endif %}
 {% endfor %}
 </ul>
