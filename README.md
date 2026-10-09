@@ -2,22 +2,19 @@
 
 A clean-room website built from a visual reference. The existing HTML and CSS are the initial visual baseline; the site structure and publishing workflow will be developed deliberately.
 
-## Project rules
+## Documentation
 
-### Naming
-- Use lowercase ASCII for every directory and file name.
-- Separate words with hyphens when needed; never use spaces or uppercase letters.
-- Keep names consistent across local files, GitHub, URLs, and generated pages.
+- [Project instructions](AGENTS.md) — naming rules, content structure, change discipline, and verification requirements.
+- [Tests and checks](TESTS.md) — project test notes.
 
-### Content
-- Store authored Markdown pages under `pages/`.
-- Use one lowercase subdirectory per top-level content section.
-- The `pages/quotes/` directory is the first planned section in the main menu.
-- Do not create placeholder notes or invent note content before it is agreed.
-- Keep site templates, styles, assets, and authored content separate.
+## Local preview
 
-### Changes and verification
-- Make the smallest change that satisfies the current task.
-- Preserve existing content and visual behavior unless the task explicitly calls for changing them.
-- Check the actual files and generated site after structural or styling changes.
-- Report what changed, what was checked, and any remaining uncertainty.
+Jekyll 4.4.1 is available in the current development environment. From the repository root, run:
+
+```sh
+jekyll serve --livereload
+```
+
+Then open http://127.0.0.1:4000/.
+
+The server watches local files; changes made on GitHub must first be pulled into the local checkout.
