@@ -1,3 +1,4 @@
+{% assign site_title = site.title | default: page.title | default: "d01-ik" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="{{ '/assets/icon.svg' | relative_url }}" type="image/svg+xml">
-<title>{% if page.title and page.title != site.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+<title>{% if page.title and page.title != site_title %}{{ page.title }} — {% endif %}{{ site_title }}</title>
 <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
 </head>
 <body>
 <header>
-  <a href="{{ '/' | relative_url }}"><img src="{{ '/assets/logo.svg' | relative_url }}" alt="{{ site.title }}" width="200" height="42"></a>
+  <a href="{{ '/' | relative_url }}"><img src="{{ '/assets/logo.svg' | relative_url }}" alt="{{ site_title }}" width="200" height="42"></a>
 </header>
 <nav aria-label="Site navigation">
   {% include nav.html dir="pages" %}
@@ -19,7 +20,7 @@
   {{ content }}
 </main>
 <footer>
-  <p><a href="{{ '/' | relative_url }}">{{ site.title }}</a> &bull; flat-file site</p>
+  <p><a href="{{ '/' | relative_url }}">{{ site_title }}</a> &bull; flat-file site</p>
 </footer>
 </body>
 </html>
